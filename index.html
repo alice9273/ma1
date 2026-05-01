@@ -7,8 +7,17 @@
 <style>
 body{margin:0;font-family:Arial;background:#0f172a;color:#fff}
 button{cursor:pointer}
-.hero{text-align:center;padding:40px}
-.open-btn{background:#22c55e;border:none;padding:12px 20px}
+
+/* HEADER TOURNOI */
+.header{
+  padding:20px;
+  background:url('header.png') center/cover no-repeat;
+}
+.header h2{margin:0}
+.game-icon{width:40px;vertical-align:middle;margin-right:10px}
+
+/* BUTTON */
+.open-btn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#f59e0b;border:none;padding:12px 25px;border-radius:10px}
 
 /* MODAL */
 .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;justify-content:center;align-items:center}
@@ -16,14 +25,15 @@ button{cursor:pointer}
 .close{float:right;font-size:20px;cursor:pointer}
 
 .card{background:#0f172a;padding:15px;border-radius:10px;margin:15px 0;text-align:center}
+.card img{width:80px}
 .price{font-size:28px;margin:10px 0}
 .selected{background:#16a34a;padding:8px;border-radius:5px}
+.not-selected{background:#374151;padding:8px;border-radius:5px}
 
 .footer-actions{display:flex;justify-content:space-between;margin-top:20px}
 .cancel{background:transparent;border:none;color:#aaa}
 .pay{background:#2563eb;border:none;padding:10px 20px;color:#fff;border-radius:5px}
 
-/* PAYMENT */
 .payment{margin-top:20px}
 .input{width:100%;padding:10px;margin:5px 0;border:none;border-radius:5px}
 .pay-btn{width:100%;background:#0ea5e9;padding:15px;border:none;border-radius:25px;margin-top:10px}
@@ -31,32 +41,29 @@ button{cursor:pointer}
 </head>
 <body>
 
-<div class="hero">
-<h2>UI Contribution</h2>
-<button class="open-btn" onclick="openModal()">Contribuer</button>
+<div class="header">
+<h2><img src="brawlstars.png" class="game-icon"> Brawl Stars Challengers</h2>
 </div>
+
+<button class="open-btn" onclick="openModal()">Contribute</button>
 
 <div class="modal" id="modal">
 <div class="modal-content">
 <span class="close" onclick="closeModal()">✖</span>
 <h3>Contribution</h3>
 
-<div class="card">
-<h4>Spike Contributor Pin</h4>
+<div class="card" onclick="toggle(0)">
+<img src="emote5.png">
+<h4>Spike Pin</h4>
 <div class="price">$5.00</div>
-<div class="selected">Selected</div>
-<p>$3.75 Prize Pool</p>
-<p>$0.50 WSMoon</p>
-<p>$0.75 Matcherino</p>
+<div id="sel0" class="selected">Selected</div>
 </div>
 
-<div class="card">
-<h4>Mandy Contributor Pin</h4>
+<div class="card" onclick="toggle(1)">
+<img src="emote2.png">
+<h4>Mandy Pin</h4>
 <div class="price">$2.50</div>
-<div class="selected">Selected</div>
-<p>$1.87 Prize Pool</p>
-<p>$0.25 WSMoon</p>
-<p>$0.38 Matcherino</p>
+<div id="sel1" class="selected">Selected</div>
 </div>
 
 <div class="footer-actions">
@@ -72,13 +79,35 @@ button{cursor:pointer}
 <input class="input" placeholder="Nom">
 <input class="input" placeholder="Adresse">
 <input class="input" placeholder="Email">
-<button class="pay-btn">Payer $8.32</button>
+<button class="pay-btn" id="totalBtn">Payer $7.50</button>
 </div>
 
 </div>
 </div>
 
 <script>
+let selected=[true,true];
+let prices=[5,2.5];
+
+function toggle(i){
+  selected[i]=!selected[i];
+  const el=document.getElementById('sel'+i);
+  if(selected[i]){
+    el.className='selected';
+    el.innerText='Selected';
+  }else{
+    el.className='not-selected';
+    el.innerText='Add';
+  }
+  updateTotal();
+}
+
+function updateTotal(){
+  let total=0;
+  selected.forEach((s,i)=>{if(s) total+=prices[i]});
+  document.getElementById('totalBtn').innerText='Payer $'+total.toFixed(2);
+}
+
 function openModal(){document.getElementById('modal').style.display='flex'}
 function closeModal(){document.getElementById('modal').style.display='none'}
 function showPayment(){document.getElementById('payment').style.display='block'}
