@@ -1,171 +1,358 @@
-export default function TournamentContributionUI() {
-  const items = [
-    {
-      name: 'Contributor Pin Alpha',
-      price: '$5.00',
-      pool: '$3.75',
-      partner: '$0.50',
-      platform: '$0.75',
-      emoji: '🛡️',
-    },
-    {
-      name: 'Contributor Pin Beta',
-      price: '$2.50',
-      pool: '$1.87',
-      partner: '$0.25',
-      platform: '$0.38',
-      emoji: '💸',
-    },
-  ];
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contribution Tournament</title>
 
-  return (
-    <div className="min-h-screen bg-slate-800 flex items-center justify-center p-4 text-white">
-      <div className="w-full max-w-md bg-slate-700 rounded-2xl shadow-2xl border border-slate-600 overflow-hidden">
-        <div className="flex items-center justify-between px-6 py-5 border-b border-slate-600">
-          <div>
-            <h1 className="text-3xl font-extrabold tracking-tight">
-              Tournament Challenge
-            </h1>
-            <p className="text-slate-300 text-sm mt-1">
-              Community Contribution Event
-            </p>
-          </div>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-          <button className="text-3xl text-slate-300 hover:text-white transition">
-            ×
-          </button>
-        </div>
+    body {
+      background: #2f3648;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: white;
+    }
 
-        <div className="px-6 py-8 space-y-6 overflow-y-auto max-h-[70vh]">
-          <div className="text-center space-y-3">
-            <p className="text-slate-200 text-lg leading-relaxed">
-              Select the items you want below and then click
-              <span className="font-bold"> CONTRIBUTE </span>
-              to complete your payment.
-            </p>
+    .popup {
+      width: 100%;
+      max-width: 430px;
+      background: #3a4155;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #50586f;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
 
-            <div className="bg-slate-800 rounded-xl p-4 border border-slate-600">
-              <p className="text-slate-400 text-sm">
-                Redeem code sent to your email
-              </p>
-              <div className="text-3xl font-black tracking-widest mt-2">
-                #2R0CG098JJ
-              </div>
-            </div>
-          </div>
+    .header {
+      padding: 25px;
+      border-bottom: 1px solid #50586f;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
 
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className="bg-slate-800 rounded-2xl border border-slate-600 p-5 shadow-lg"
-            >
-              <div className="flex justify-center mb-5">
-                <div className="w-28 h-28 rounded-full bg-gradient-to-br from-red-500 to-amber-400 flex items-center justify-center text-6xl shadow-xl">
-                  {item.emoji}
-                </div>
-              </div>
+    .header h1 {
+      font-size: 22px;
+      line-height: 1.4;
+      font-weight: 800;
+    }
 
-              <h2 className="text-2xl font-bold text-center">
-                {item.name}
-              </h2>
+    .close {
+      font-size: 40px;
+      color: #d8d8d8;
+      cursor: pointer;
+      user-select: none;
+    }
 
-              <div className="text-center text-5xl font-black mt-4">
-                {item.price}
-              </div>
+    .content {
+      padding: 25px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
 
-              <button className="mt-5 w-full bg-emerald-500 hover:bg-emerald-400 transition text-white py-3 rounded-xl font-bold text-xl shadow-lg">
-                Selected
-              </button>
+    .description {
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #f0f0f0;
+      margin-bottom: 25px;
+    }
 
-              <div className="mt-5 space-y-2 text-lg">
-                <div className="flex items-center justify-between text-slate-300">
-                  <span>🏆 Prize Pool</span>
-                  <span className="font-bold">{item.pool}</span>
-                </div>
+    .description strong {
+      font-weight: 800;
+    }
 
-                <div className="flex items-center justify-between text-slate-300">
-                  <span>🎮 Partner</span>
-                  <span className="font-bold">{item.partner}</span>
-                </div>
+    .code {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-                <div className="flex items-center justify-between text-slate-300">
-                  <span>🧩 Platform</span>
-                  <span className="font-bold">{item.platform}</span>
-                </div>
-              </div>
-            </div>
-          ))}
+    .code p {
+      color: #c8c8c8;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
 
-          <div className="text-center text-slate-300 text-lg">
-            You can also make a direct contribution by clicking
-            <button className="text-sky-400 ml-2 hover:underline">
-              here
-            </button>
-          </div>
+    .code h2 {
+      font-size: 40px;
+      letter-spacing: 3px;
+      font-weight: 900;
+    }
 
-          <div className="bg-slate-800 border border-slate-600 rounded-2xl p-5 space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-2xl font-bold">Total</span>
-              <span className="text-3xl font-black">$7.50</span>
-            </div>
+    .card {
+      background: #262d3d;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
 
-            <button className="w-full bg-slate-700 border border-slate-500 rounded-xl py-4 text-xl font-semibold hover:bg-slate-600 transition">
-              💳 Bank Card
-            </button>
+    .card img {
+      width: 130px;
+      display: block;
+      margin: 0 auto 25px;
+    }
 
-            <div className="space-y-3 pt-3">
-              <input
-                placeholder="Card number"
-                className="w-full bg-slate-100 text-black rounded-xl px-4 py-4 outline-none"
-              />
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
 
-              <div className="grid grid-cols-2 gap-3">
-                <input
-                  placeholder="Expiration"
-                  className="bg-slate-100 text-black rounded-xl px-4 py-4 outline-none"
-                />
+    .price {
+      text-align: center;
+      font-size: 60px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
 
-                <input
-                  placeholder="Security code"
-                  className="bg-slate-100 text-black rounded-xl px-4 py-4 outline-none"
-                />
-              </div>
+    .selected {
+      width: 100%;
+      border: none;
+      background: #1faa59;
+      color: white;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
 
-              <input
-                placeholder="First name"
-                className="w-full bg-slate-100 text-black rounded-xl px-4 py-4 outline-none"
-              />
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 18px;
+    }
 
-              <input
-                placeholder="Last name"
-                className="w-full bg-slate-100 text-black rounded-xl px-4 py-4 outline-none"
-              />
+    .stats div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-              <input
-                placeholder="Address"
-                className="w-full bg-slate-100 text-black rounded-xl px-4 py-4 outline-none"
-              />
+    .direct {
+      text-align: center;
+      font-size: 17px;
+      margin: 20px 0 30px;
+      line-height: 1.5;
+    }
 
-              <div className="grid grid-cols-2 gap-3">
-                <input
-                  placeholder="Postal code"
-                  className="bg-slate-100 text-black rounded-xl px-4 py-4 outline-none"
-                />
+    .direct a {
+      color: #4ea4ff;
+      text-decoration: none;
+    }
 
-                <input
-                  placeholder="City"
-                  className="bg-slate-100 text-black rounded-xl px-4 py-4 outline-none"
-                />
-              </div>
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 20px;
+    }
 
-              <button className="w-full mt-4 bg-blue-600 hover:bg-blue-500 transition py-4 rounded-xl font-black text-xl shadow-lg">
-                CONTRIBUTE
-              </button>
-            </div>
-          </div>
+    .footer button {
+      flex: 1;
+      padding: 16px;
+      border-radius: 10px;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .cancel {
+      background: transparent;
+      color: white;
+      border: 1px solid #5d6477 !important;
+    }
+
+    .contribute {
+      background: #2b61ff;
+      color: white;
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.2) inset;
+    }
+
+    .payment {
+      display: none;
+      margin-top: 30px;
+      background: #8b8b8b;
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .payment.active {
+      display: block;
+    }
+
+    .payment-header {
+      background: #3d3d3d;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .payment input {
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 500px) {
+      .price {
+        font-size: 52px;
+      }
+
+      .code h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="popup">
+
+    <div class="header">
+      <h1>
+        Contribute to Tournament <br>
+        Qualifier #1
+      </h1>
+
+      <div class="close">×</div>
+    </div>
+
+    <div class="content">
+
+      <div class="description">
+        Select the items you want below and then click
+        <strong>CONTRIBUTE</strong>
+        to complete your payment.
+      </div>
+
+      <div class="code">
+        <p>
+          Check your email for a link to redeem your pin!
+        </p>
+
+        <h2>#2R0CG098JJ</h2>
+      </div>
+
+      <div class="card">
+        <img src="emote5.png" alt="pin 1">
+
+        <h3>Spike Contributor Pin</h3>
+
+        <div class="price">$5.00</div>
+
+        <button class="selected">Selected</button>
+
+        <div class="stats">
+          <div>🏆 <strong>$3.75</strong> Prize Pool</div>
+          <div>🎮 <strong>$0.50</strong> WSMoon</div>
+          <div>🔺 <strong>$0.75</strong> Platform</div>
         </div>
       </div>
+
+      <div class="card">
+        <img src="emote2.png" alt="pin 2">
+
+        <h3>Mandy Contributor Pin</h3>
+
+        <div class="price">$2.50</div>
+
+        <button class="selected">Selected</button>
+
+        <div class="stats">
+          <div>🏆 <strong>$1.87</strong> Prize Pool</div>
+          <div>🎮 <strong>$0.25</strong> WSMoon</div>
+          <div>🔺 <strong>$0.38</strong> Platform</div>
+        </div>
+      </div>
+
+      <div class="direct">
+        You can also make a direct contribution by clicking
+        <a href="#">here</a>
+      </div>
+
+      <div class="footer">
+        <button class="cancel">Cancel</button>
+        <button class="contribute" id="openPayment">
+          Contribute
+        </button>
+      </div>
+
+      <div class="payment" id="paymentBox">
+
+        <div class="total">
+          <span>Total:</span>
+          <span>$7.50</span>
+        </div>
+
+        <div class="payment-header">
+          💳 Carte bancaire
+        </div>
+
+        <input type="text" placeholder="Numéro de carte">
+
+        <div class="row">
+          <input type="text" placeholder="Date d'expiration">
+          <input type="text" placeholder="Crypto. visuel">
+        </div>
+
+        <input type="text" placeholder="Prénom">
+        <input type="text" placeholder="Nom">
+        <input type="text" placeholder="Adresse">
+        <input type="text" placeholder="Code postal">
+        <input type="text" placeholder="Ville">
+        <input type="text" placeholder="Téléphone">
+
+      </div>
+
     </div>
-  );
-}
-      
+
+  </div>
+
+  <script>
+    const contributeBtn = document.getElementById('openPayment');
+    const paymentBox = document.getElementById('paymentBox');
+
+    contributeBtn.addEventListener('click', () => {
+      paymentBox.classList.toggle('active');
+
+      if (paymentBox.classList.contains('active')) {
+        contributeBtn.textContent = 'Hide Payment';
+      } else {
+        contributeBtn.textContent = 'Contribute';
+      }
+    });
+  </script>
+
+</body>
+</html>
