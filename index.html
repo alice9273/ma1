@@ -3,87 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brawl Stars Event</title>
+<title>Matcherino Clone</title>
 <style>
-body{margin:0;font-family:Arial;background:#0f172a;color:#fff}
-button{cursor:pointer}
+body{margin:0;font-family:Inter,Arial;background:#0b1220;color:#e5e7eb}
 
 /* TOP BAR */
 .topbar{
   display:flex;
   align-items:center;
-  gap:12px;
   padding:10px 12px;
-  background:#1e293b;
+  background:#374151;
 }
-.topbar .menu{font-size:22px}
-.topbar img.logo{height:26px}
-.topbar .spacer{flex:1}
-.topbar img.avatar{width:32px;height:32px;border-radius:50%}
-
-.menu{font-size:22px}
-.icon{width:35px;border-radius:50%}
+.menu{font-size:22px;color:#cbd5f5}
+.logo{height:34px;margin-left:10px}
+.spacer{flex:1}
+.search{
+  width:36px;height:36px;
+  background:#4b5563;
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  margin-right:10px;
+}
+.avatar{width:36px;height:36px;border-radius:50%}
 
 /* TITLE */
-.title{padding:15px}
-.title h1{font-size:20px;margin:0}
+.title{padding:16px}
+.title h1{font-size:20px;font-weight:600;margin:0}
 
 /* HEADER IMAGE */
-.header-img{margin:0 15px;height:180px;background:url('header.png') center/cover no-repeat;border-radius:15px}
+.header-img{
+  margin:0 16px;
+  height:170px;
+  background:url('header.png') center/cover no-repeat;
+  border-radius:16px;
+}
 
 /* PRIZE */
-.prize{padding:20px 15px}
-.prize h3{color:#facc15;margin:0 0 10px 0;letter-spacing:2px}
-.prize .amount{font-size:28px;font-weight:bold}
+.prize{padding:20px 16px}
+.prize h3{color:#facc15;font-size:12px;letter-spacing:2px;margin-bottom:6px}
+.prize .amount{font-size:30px;font-weight:700}
 
-/* OVERVIEW */
-.card{margin:0 15px 80px;background:#111827;border-radius:15px;padding:20px}
-.card h2{margin-top:0}
-.row{display:flex;align-items:center;margin:15px 0;color:#cbd5f5}
-.row span{margin-left:10px}
+/* CARD */
+.card{
+  margin:0 16px 16px;
+  background:#111827;
+  border-radius:16px;
+  padding:20px;
+  border:1px solid #2f3b4d;
+}
+.card h2{margin:0 0 10px 0;font-size:22px}
+.row{
+  display:flex;
+  align-items:center;
+  margin:18px 0;
+  color:#cbd5f5;
+  font-size:15px;
+}
+.icon-circle{
+  width:38px;height:38px;
+  background:#374151;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin-right:12px;
+  font-size:16px;
+}
+
+/* ABOUT */
+.about-title{font-size:18px;margin:20px 16px 10px;color:#cbd5f5}
+.about{
+  margin:0 16px 80px;
+}
+.about h1{font-size:32px;line-height:1.2;margin:0}
 
 /* BOTTOM BAR */
 .bottombar{
   position:fixed;
   bottom:0;
   width:100%;
-  background:#111827;
+  background:#374151;
   display:flex;
   justify-content:space-around;
   align-items:center;
   padding:8px 0;
-  border-top:1px solid #374151;
 }
-.nav-item{display:flex;flex-direction:column;align-items:center;font-size:12px;color:#9ca3af}
-.nav-icon{font-size:18px;margin-bottom:2px}
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:12px;
+  color:#9ca3af;
+}
+.nav-icon{font-size:18px}
+
 .contribute{
-  background:#f59e0b;
-  padding:10px 22px;
+  background:#d4a046;
+  padding:10px 24px;
   border-radius:12px;
-  border:3px solid #fde68a;
-  font-weight:bold;
+  border:3px solid #fcd34d;
+  font-weight:600;
   color:#111827;
 }
-.contribute{background:#f59e0b;padding:10px 20px;border-radius:10px;border:3px solid #fde68a}
-
-/* MODAL */
-.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;justify-content:center;align-items:center}
-.modal-content{background:#1e293b;width:95%;max-width:400px;border-radius:10px;padding:20px;max-height:90vh;overflow:auto}
-.close{float:right;font-size:20px;cursor:pointer}
-
-.card-emote{background:#0f172a;padding:15px;border-radius:10px;margin:15px 0;text-align:center}
-.card-emote img{width:80px}
-.price{font-size:24px;margin:10px 0}
-.selected{background:#16a34a;padding:8px;border-radius:5px}
-.not-selected{background:#374151;padding:8px;border-radius:5px}
-
-.footer-actions{display:flex;justify-content:space-between;margin-top:20px}
-.cancel{background:transparent;border:none;color:#aaa}
-.pay{background:#2563eb;border:none;padding:10px 20px;color:#fff;border-radius:5px}
-
-.payment{margin-top:20px}
-.input{width:100%;padding:10px;margin:5px 0;border:none;border-radius:5px}
-.pay-btn{width:100%;background:#0ea5e9;padding:15px;border:none;border-radius:25px;margin-top:10px}
 </style>
 </head>
 <body>
@@ -92,11 +111,8 @@ button{cursor:pointer}
   <div class="menu">☰</div>
   <img src="brawlstars.png" class="logo">
   <div class="spacer"></div>
-  <div style="width:28px;height:28px;border-radius:6px;background:#334155;display:flex;align-items:center;justify-content:center">🔍</div>
+  <div class="search">🔍</div>
   <img src="emote5.png" class="avatar">
-</div>
-  <img src="brawlstars.png" style="height:30px">
-  <img src="emote5.png" class="icon">
 </div>
 
 <div class="title">
@@ -112,95 +128,33 @@ button{cursor:pointer}
 
 <div class="card">
   <h2>Overview</h2>
-  <div class="row">🌍 <span>EU/Germany-2</span></div>
-  <div class="row">📘 <span>Power League</span></div>
-  <div class="row">🔀 <span>Single Elim - 3v3</span></div>
-  <div class="row">🎟️ <span>Invite</span></div>
+  <div class="row"><div class="icon-circle">🌍</div>EU/Germany-2</div>
+  <div class="row"><div class="icon-circle">📘</div>Power League</div>
+  <div class="row"><div class="icon-circle">🔀</div>Single Elim - 3v3</div>
+  <div class="row"><div class="icon-circle">🎟️</div>Invite</div>
+  <div class="row"><div class="icon-circle">👥</div>433 Teams</div>
+  <div class="row"><div class="icon-circle">🕒</div>Mon, Apr 27, 2026 6:00PM UTC+2</div>
+  <div class="row"><div class="icon-circle">✔</div>Check In Start: Wed, Apr 29, 2026 5:00PM UTC+2</div>
+</div>
+
+<div class="about-title">About</div>
+<div class="about">
+  <h1>Brawl Stars Challengers France - Qualifier #1</h1>
 </div>
 
 <div class="bottombar">
   <div class="nav-item">
     <div class="nav-icon">▦</div>
-    <div>Navigation</div>
+    Navigation
   </div>
 
-  <div class="contribute" onclick="openModal()">Contribute</div>
+  <div class="contribute">Contribute</div>
 
   <div class="nav-item">
     <div class="nav-icon">⚡</div>
-    <div>Activity</div>
+    Activity
   </div>
 </div>
-  <div class="contribute" onclick="openModal()">Contribute</div>
-  <div>Activity</div>
-</div>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">✖</span>
-<h3>Contribution</h3>
-
-<div class="card-emote" onclick="toggle(0)">
-<img src="emote5.png">
-<h4>Spike Pin</h4>
-<div class="price">$5.00</div>
-<div id="sel0" class="selected">Selected</div>
-</div>
-
-<div class="card-emote" onclick="toggle(1)">
-<img src="emote2.png">
-<h4>Mandy Pin</h4>
-<div class="price">$2.50</div>
-<div id="sel1" class="selected">Selected</div>
-</div>
-
-<div class="footer-actions">
-<button class="cancel" onclick="closeModal()">Cancel</button>
-<button class="pay" onclick="showPayment()">Contribute</button>
-</div>
-
-<div class="payment" id="payment" style="display:none">
-<h4>Paiement</h4>
-<input class="input" placeholder="Numéro de carte">
-<input class="input" placeholder="Date expiration">
-<input class="input" placeholder="CVV">
-<input class="input" placeholder="Nom">
-<input class="input" placeholder="Adresse">
-<input class="input" placeholder="Email">
-<button class="pay-btn" id="totalBtn">Payer $7.50</button>
-</div>
-
-</div>
-</div>
-
-<script>
-let selected=[true,true];
-let prices=[5,2.5];
-
-function toggle(i){
-  selected[i]=!selected[i];
-  const el=document.getElementById('sel'+i);
-  if(selected[i]){
-    el.className='selected';
-    el.innerText='Selected';
-  }else{
-    el.className='not-selected';
-    el.innerText='Add';
-  }
-  updateTotal();
-}
-
-function updateTotal(){
-  let total=0;
-  selected.forEach((s,i)=>{if(s) total+=prices[i]});
-  document.getElementById('totalBtn').innerText='Payer $'+total.toFixed(2);
-}
-
-function openModal(){document.getElementById('modal').style.display='flex'}
-function closeModal(){document.getElementById('modal').style.display='none'}
-function showPayment(){document.getElementById('payment').style.display='block'}
-</script>
 
 </body>
 </html>
