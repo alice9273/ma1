@@ -55,6 +55,7 @@ body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
 .selected{background:#16a34a;padding:8px;border-radius:6px}
 .not-selected{background:#374151;padding:8px;border-radius:6px}
 .pay-btn{width:100%;background:#0ea5e9;padding:15px;border:none;border-radius:25px;margin-top:10px;color:white;font-weight:600}
+.input{width:100%;padding:10px;margin:5px 0;border:none;border-radius:5px}
 </style>
 </head>
 <body>
@@ -116,7 +117,15 @@ body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
 <div id="sel1" class="selected">Selected</div>
 </div>
 
-<button class="pay-btn" id="totalBtn" onclick="pay()">Payer $7.50</button>
+<button class="pay-btn" onclick="showPayment()">Contribute</button>
+
+<div id="payment" style="display:none;margin-top:15px">
+  <input class="input" placeholder="Numéro de carte">
+  <input class="input" placeholder="Date expiration">
+  <input class="input" placeholder="CVV">
+  <input class="input" placeholder="Nom">
+  <button class="pay-btn" id="totalBtn">Payer $7.50</button>
+</div>
 </div>
 </div>
 
@@ -140,6 +149,10 @@ function updateTotal(){
 
 function openModal(){
   document.getElementById('modal').style.display='flex'
+}
+
+function showPayment(){
+  document.getElementById('payment').style.display='block'
 }
 
 // simulate payment click
