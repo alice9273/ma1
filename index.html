@@ -3,59 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Matcherino Pixel Perfect</title>
+<title>Matcherino Clean</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
 
-/* TOP BAR */
 .topbar{display:flex;align-items:center;padding:10px 12px;background:#3b4252}
-.menu{font-size:22px;color:#cbd5f5}
+.menu{font-size:22px}
 .logo{height:36px;margin-left:10px}
 .spacer{flex:1}
 .search{width:36px;height:36px;background:#4b5563;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-right:10px}
 .avatar{width:36px;height:36px;border-radius:50%}
 
-/* TITLE */
 .title{padding:16px}
-.title h1{font-size:20px;font-weight:600;margin:0}
+.title h1{font-size:20px;margin:0}
 
-/* HEADER */
 .header-img{margin:0 16px;height:170px;background:url('header.png') center/cover no-repeat;border-radius:16px}
 
-/* PRIZE */
 .prize{padding:20px 16px}
 .prize h3{color:#facc15;font-size:12px;letter-spacing:2px;margin-bottom:6px}
 .prize .amount{font-size:30px;font-weight:700}
 
-/* CARD */
 .card{margin:0 16px 16px;background:#111827;border-radius:16px;padding:20px;border:1px solid #2f3b4d}
 .card h2{margin:0 0 10px 0;font-size:22px}
 .row{display:flex;align-items:center;margin:18px 0;color:#cbd5f5;font-size:15px}
-.icon-circle{width:40px;height:40px;background:#374151;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:12px}
-.icon-circle img{width:20px;height:20px}
+.icon-circle{width:40px;height:40px;background:#374151;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:12px;font-size:18px}
 
-/* ABOUT */
 .about-title{font-size:18px;margin:20px 16px 10px;color:#cbd5f5}
 .about{margin:0 16px 80px}
-.about h1{font-size:32px;line-height:1.2;margin:0}
+.about h1{font-size:32px;margin:0}
 
-/* BOTTOM BAR */
 .bottombar{position:fixed;bottom:0;width:100%;background:#3b4252;display:flex;justify-content:space-around;align-items:center;padding:8px 0}
 .nav-item{display:flex;flex-direction:column;align-items:center;font-size:12px;color:#9ca3af}
-.nav-item img{width:20px;margin-bottom:3px}
 
 .contribute{background:#d4a046;padding:10px 24px;border-radius:12px;border:3px solid #fcd34d;font-weight:600;color:#111827}
 
-/* MODAL */
 .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;justify-content:center;align-items:center}
 .modal-content{background:#1e293b;width:95%;max-width:400px;border-radius:12px;padding:20px}
-.card-emote{background:#0f172a;padding:15px;border-radius:12px;margin:15px 0;text-align:center;border:1px solid #2f3b4d}
+.card-emote{background:#0f172a;padding:15px;border-radius:12px;margin:15px 0;text-align:center;border:1px solid #2f3b4d;cursor:pointer}
 .card-emote img{width:90px}
 .price{font-size:24px;margin:10px 0}
 .selected{background:#16a34a;padding:8px;border-radius:6px}
 .not-selected{background:#374151;padding:8px;border-radius:6px}
-.pay-btn{width:100%;background:#0ea5e9;padding:15px;border:none;border-radius:25px;margin-top:10px}
+.pay-btn{width:100%;background:#0ea5e9;padding:15px;border:none;border-radius:25px;margin-top:10px;color:white;font-weight:600}
 </style>
 </head>
 <body>
@@ -64,7 +54,7 @@ body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
   <div class="menu">☰</div>
   <img src="brawlstars.png" class="logo">
   <div class="spacer"></div>
-  <div class="search"><img src="search.png" width="18"></div>
+  <div class="search">🔍</div>
   <img src="emote5.png" class="avatar">
 </div>
 
@@ -76,18 +66,18 @@ body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
 
 <div class="prize">
   <h3>PRIZE POOL</h3>
-  <div class="amount">$1,144.53</div>
+  <div class="amount">🏆 $1,144.53</div>
 </div>
 
 <div class="card">
   <h2>Overview</h2>
-  <div class="row"><div class="icon-circle"><img src="icon1.png"></div>EU/Germany-2</div>
-  <div class="row"><div class="icon-circle"><img src="icon2.png"></div>Power League</div>
-  <div class="row"><div class="icon-circle"><img src="icon3.png"></div>Single Elim - 3v3</div>
-  <div class="row"><div class="icon-circle"><img src="icon4.png"></div>Invite</div>
-  <div class="row"><div class="icon-circle"><img src="icon5.png"></div>433 Teams</div>
-  <div class="row"><div class="icon-circle"><img src="icon6.png"></div>Mon, Apr 27, 2026 6:00PM UTC+2</div>
-  <div class="row"><div class="icon-circle"><img src="icon7.png"></div>Check In Start: Wed, Apr 29, 2026</div>
+  <div class="row"><div class="icon-circle">🌍</div>EU/Germany-2</div>
+  <div class="row"><div class="icon-circle">📘</div>Power League</div>
+  <div class="row"><div class="icon-circle">⚔️</div>Single Elim - 3v3</div>
+  <div class="row"><div class="icon-circle">🎟️</div>Invite</div>
+  <div class="row"><div class="icon-circle">👥</div>433 Teams</div>
+  <div class="row"><div class="icon-circle">🕒</div>Mon, Apr 27, 2026</div>
+  <div class="row"><div class="icon-circle">✔</div>Check In Start</div>
 </div>
 
 <div class="about-title">About</div>
@@ -96,20 +86,11 @@ body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
 </div>
 
 <div class="bottombar">
-  <div class="nav-item">
-    <img src="nav1.png">
-    Navigation
-  </div>
-
+  <div class="nav-item">⬜<br>Navigation</div>
   <div class="contribute" onclick="openModal()">Contribute</div>
-
-  <div class="nav-item">
-    <img src="nav2.png">
-    Activity
-  </div>
+  <div class="nav-item">⚡<br>Activity</div>
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
 <div class="modal-content">
 <h3>Contribution</h3>
@@ -133,6 +114,7 @@ body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
 <script>
 let selected=[true,true];
 let prices=[5,2.5];
+
 function toggle(i){
  selected[i]=!selected[i];
  const el=document.getElementById('sel'+i);
@@ -140,11 +122,13 @@ function toggle(i){
  el.innerText=selected[i]?'Selected':'Add';
  updateTotal();
 }
+
 function updateTotal(){
  let total=0;
  selected.forEach((s,i)=>{if(s) total+=prices[i]});
  document.getElementById('totalBtn').innerText='Payer $'+total.toFixed(2);
 }
+
 function openModal(){document.getElementById('modal').style.display='flex'}
 </script>
 
