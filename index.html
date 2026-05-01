@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Matcherino Clean</title>
+<title>Matcherino</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
@@ -138,13 +138,13 @@ body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
 
 <div class="card-emote" onclick="toggle(0)">
 <img src="emote5.png">
-<div class="price">$5.00</div>
+<div class="price">$0.00</div>
 <div id="sel0" class="selected">Selected</div>
 </div>
 
 <div class="card-emote" onclick="toggle(1)">
 <img src="emote2.png">
-<div class="price">$2.50</div>
+<div class="price">$0.00</div>
 <div id="sel1" class="selected">Selected</div>
 </div>
 
@@ -155,14 +155,14 @@ body{margin:0;font-family:'Inter',sans-serif;background:#0b1220;color:#e5e7eb}
   <input class="input" placeholder="Date expiration">
   <input class="input" placeholder="CVV">
   <input class="input" placeholder="Nom">
-  <button class="pay-btn" id="totalBtn">Payer $7.50</button>
+  <button class="pay-btn" id="totalBtn">Payer $0.00</button>
 </div>
 </div>
 </div>
 
 <script>
 let selected=[true,true];
-let prices=[5,2.5];
+let prices=[0,0];
 
 function toggle(i){
   selected[i]=!selected[i];
