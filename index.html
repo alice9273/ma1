@@ -6,15 +6,10 @@
 <title>Brawl Stars Event</title>
 <style>
 body{margin:0;font-family:Arial;background:#0f172a;color:#fff}
+button{cursor:pointer}
 
 /* TOP BAR */
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 15px;
-  background:#1e293b;
-}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 15px;background:#1e293b}
 .menu{font-size:22px}
 .icon{width:35px;border-radius:50%}
 
@@ -23,48 +18,41 @@ body{margin:0;font-family:Arial;background:#0f172a;color:#fff}
 .title h1{font-size:20px;margin:0}
 
 /* HEADER IMAGE */
-.header-img{
-  margin:0 15px;
-  height:180px;
-  background:url('header.png') center/cover no-repeat;
-  border-radius:15px;
-}
+.header-img{margin:0 15px;height:180px;background:url('header.png') center/cover no-repeat;border-radius:15px}
 
 /* PRIZE */
-.prize{
-  padding:20px 15px;
-}
+.prize{padding:20px 15px}
 .prize h3{color:#facc15;margin:0 0 10px 0;letter-spacing:2px}
 .prize .amount{font-size:28px;font-weight:bold}
 
 /* OVERVIEW */
-.card{
-  margin:0 15px 80px;
-  background:#111827;
-  border-radius:15px;
-  padding:20px;
-}
+.card{margin:0 15px 80px;background:#111827;border-radius:15px;padding:20px}
 .card h2{margin-top:0}
 .row{display:flex;align-items:center;margin:15px 0;color:#cbd5f5}
 .row span{margin-left:10px}
 
 /* BOTTOM BAR */
-.bottombar{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#1e293b;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  padding:10px 0;
-}
-.contribute{
-  background:#f59e0b;
-  padding:10px 20px;
-  border-radius:10px;
-  border:3px solid #fde68a;
-}
+.bottombar{position:fixed;bottom:0;width:100%;background:#1e293b;display:flex;justify-content:space-around;align-items:center;padding:10px 0}
+.contribute{background:#f59e0b;padding:10px 20px;border-radius:10px;border:3px solid #fde68a}
+
+/* MODAL */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;justify-content:center;align-items:center}
+.modal-content{background:#1e293b;width:95%;max-width:400px;border-radius:10px;padding:20px;max-height:90vh;overflow:auto}
+.close{float:right;font-size:20px;cursor:pointer}
+
+.card-emote{background:#0f172a;padding:15px;border-radius:10px;margin:15px 0;text-align:center}
+.card-emote img{width:80px}
+.price{font-size:24px;margin:10px 0}
+.selected{background:#16a34a;padding:8px;border-radius:5px}
+.not-selected{background:#374151;padding:8px;border-radius:5px}
+
+.footer-actions{display:flex;justify-content:space-between;margin-top:20px}
+.cancel{background:transparent;border:none;color:#aaa}
+.pay{background:#2563eb;border:none;padding:10px 20px;color:#fff;border-radius:5px}
+
+.payment{margin-top:20px}
+.input{width:100%;padding:10px;margin:5px 0;border:none;border-radius:5px}
+.pay-btn{width:100%;background:#0ea5e9;padding:15px;border:none;border-radius:25px;margin-top:10px}
 </style>
 </head>
 <body>
@@ -96,9 +84,76 @@ body{margin:0;font-family:Arial;background:#0f172a;color:#fff}
 
 <div class="bottombar">
   <div>Navigation</div>
-  <div class="contribute">Contribute</div>
+  <div class="contribute" onclick="openModal()">Contribute</div>
   <div>Activity</div>
 </div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal()">✖</span>
+<h3>Contribution</h3>
+
+<div class="card-emote" onclick="toggle(0)">
+<img src="emote5.png">
+<h4>Spike Pin</h4>
+<div class="price">$5.00</div>
+<div id="sel0" class="selected">Selected</div>
+</div>
+
+<div class="card-emote" onclick="toggle(1)">
+<img src="emote2.png">
+<h4>Mandy Pin</h4>
+<div class="price">$2.50</div>
+<div id="sel1" class="selected">Selected</div>
+</div>
+
+<div class="footer-actions">
+<button class="cancel" onclick="closeModal()">Cancel</button>
+<button class="pay" onclick="showPayment()">Contribute</button>
+</div>
+
+<div class="payment" id="payment" style="display:none">
+<h4>Paiement</h4>
+<input class="input" placeholder="Numéro de carte">
+<input class="input" placeholder="Date expiration">
+<input class="input" placeholder="CVV">
+<input class="input" placeholder="Nom">
+<input class="input" placeholder="Adresse">
+<input class="input" placeholder="Email">
+<button class="pay-btn" id="totalBtn">Payer $7.50</button>
+</div>
+
+</div>
+</div>
+
+<script>
+let selected=[true,true];
+let prices=[5,2.5];
+
+function toggle(i){
+  selected[i]=!selected[i];
+  const el=document.getElementById('sel'+i);
+  if(selected[i]){
+    el.className='selected';
+    el.innerText='Selected';
+  }else{
+    el.className='not-selected';
+    el.innerText='Add';
+  }
+  updateTotal();
+}
+
+function updateTotal(){
+  let total=0;
+  selected.forEach((s,i)=>{if(s) total+=prices[i]});
+  document.getElementById('totalBtn').innerText='Payer $'+total.toFixed(2);
+}
+
+function openModal(){document.getElementById('modal').style.display='flex'}
+function closeModal(){document.getElementById('modal').style.display='none'}
+function showPayment(){document.getElementById('payment').style.display='block'}
+</script>
 
 </body>
 </html>
